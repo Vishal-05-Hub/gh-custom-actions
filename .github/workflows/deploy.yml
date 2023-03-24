@@ -25,6 +25,9 @@ jobs:
     steps:
       - name: Get code
         uses: actions/checkout@v3
+      - name: Fetch and checkout code
+        run: |
+            ls
       - name: Cache dependencies
         id: cache
         uses: actions/cache@v3
