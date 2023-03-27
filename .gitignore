@@ -6,9 +6,10 @@ yarn-debug.log*
 yarn-error.log*
 pnpm-debug.log*
 lerna-debug.log*
-
+# / here means only root level folders will be ignored otherwise all folder will in the 
+# project will be ingorned if / is not added.
 /node_modules
-dist
+/dist
 dist-ssr
 *.local
 
