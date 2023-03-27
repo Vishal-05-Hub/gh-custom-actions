@@ -1,0 +1,20 @@
+# This action.yml name is compulsory as this name is centric to defining actions only
+# and this file name must be there whenever we are creating our action. For composite
+# actions this is the only file needed but for javascript and docker based custom 
+# actions we need more files.
+
+name: 'Get & Cached Dependencies'
+description: 'Get the dependencies(via npm) and Cached them.'
+runs:
+  using: 'composite'
+  steps:
+    - name: Cache dependencies
+        id: cache
+        uses: actions/cache@v3
+        with:
+          path: node_modules
+          key: deps-node-modules-${{ hashFiles('**/package-lock.json') }}
+    - name: Install dependencies
+      if: steps.cache.outputs.cache-hit != 'true'
+      run: npm ci
+      shell: bash
