@@ -63,6 +63,7 @@ jobs:
       - name: Output contents
         run: ls
       - name: Deploy site
+        id: deploy
         uses: ./.github/actions/deploy-s3-javascript
         env: 
           AWS_ACCESS_KEY_ID: vcsje
@@ -70,4 +71,7 @@ jobs:
         with:
           bucket: gha-actions-bucket
           dist-folder: ./dist
+      - name: Output Information
+        run: 
+          echo "LIVE URL- ${{ steps.deploy.outputs.website-url }}"
 
